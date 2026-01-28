@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.deverp.core.mapper.AttendanceMapper">
+  <select id="findByUserId" resultType="AttendanceRecord">
+    SELECT * FROM attendance_record WHERE user_id = #{userId}
+  </select>
+
+  <select id="findByUserAndDate" resultType="AttendanceRecord">
+    SELECT * FROM attendance_record WHERE user_id = #{userId} AND work_date = #{workDate}
+  </select>
+
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO attendance_record (user_id, work_date, check_in_at, check_out_at, status, note, created_at, updated_at)
+    VALUES (#{userId}, #{workDate}, #{checkInAt}, #{checkOutAt}, #{status}, #{note}, NOW(), NOW())
+  </insert>
+
+  <update id="update">
+    UPDATE attendance_record
+    SET check_in_at = #{checkInAt},
+        check_out_at = #{checkOutAt},
+        status = #{status},
+        note = #{note},
+        updated_at = NOW()
+    WHERE id = #{id}
+  </update>
+
+  <delete id="delete">
+    DELETE FROM attendance_record WHERE id = #{id}
+  </delete>
+</mapper>

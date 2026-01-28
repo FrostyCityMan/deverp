@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.deverp.core.mapper.UserAccountMapper">
+  <select id="findAll" resultType="UserAccount">
+    SELECT * FROM user_account WHERE active = true
+  </select>
+
+  <select id="findById" resultType="UserAccount">
+    SELECT * FROM user_account WHERE id = #{id}
+  </select>
+
+  <select id="findByUsername" resultType="UserAccount">
+    SELECT * FROM user_account WHERE username = #{username}
+  </select>
+
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO user_account (
+      username, password_hash, full_name, department_code, job_title, role_code, active, created_at, updated_at
+    ) VALUES (
+      #{username}, #{passwordHash}, #{fullName}, #{departmentCode}, #{jobTitle}, #{roleCode}, #{active}, NOW(), NOW()
+    )
+  </insert>
+
+  <update id="update">
+    UPDATE user_account
+    SET full_name = #{fullName},
+        department_code = #{departmentCode},
+        job_title = #{jobTitle},
+        role_code = #{roleCode},
+        active = #{active},
+        updated_at = NOW()
+    WHERE id = #{id}
+  </update>
+
+  <update id="deactivate">
+    UPDATE user_account SET active = false, updated_at = NOW() WHERE id = #{id}
+  </update>
+</mapper>

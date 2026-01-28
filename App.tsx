@@ -7,10 +7,8 @@ import { Attendance } from './pages/Attendance';
 import { Projects } from './pages/Projects';
 import { Issues } from './pages/Issues';
 import { UnitTests } from './pages/UnitTests';
+import { Leave } from './pages/Leave';
 import { User } from './types';
-
-// Fallback for pages not yet fully implemented in this demo
-const Leave = () => <div className="p-6 text-slate-500">Leave Management Module (Placeholder)</div>;
 
 const App: React.FC = () => {
   // In a real app, we'd check localStorage/cookie here

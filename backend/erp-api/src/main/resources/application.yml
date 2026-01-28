@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: deverp-api
+  profiles:
+    active: closed
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:/sql/schema.sql
+
+server:
+  port: 8080
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

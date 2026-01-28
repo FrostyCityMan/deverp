@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.deverp.core.mapper.FileAttachmentMapper">
+  <select id="findById" resultType="FileAttachment">
+    SELECT * FROM file_attachment WHERE id = #{id}
+  </select>
+
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO file_attachment (
+      original_name, stored_name, storage_path, content_type, file_size, uploader_id, created_at
+    ) VALUES (
+      #{originalName}, #{storedName}, #{storagePath}, #{contentType}, #{fileSize}, #{uploaderId}, NOW()
+    )
+  </insert>
+
+  <delete id="delete">
+    DELETE FROM file_attachment WHERE id = #{id}
+  </delete>
+</mapper>

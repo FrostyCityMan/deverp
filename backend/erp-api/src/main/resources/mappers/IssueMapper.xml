@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.deverp.core.mapper.IssueMapper">
+  <select id="findByProjectId" resultType="Issue">
+    SELECT * FROM issue WHERE project_id = #{projectId}
+  </select>
+
+  <select id="findById" resultType="Issue">
+    SELECT * FROM issue WHERE id = #{id}
+  </select>
+
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+    INSERT INTO issue (
+      project_id, category, title, description, status, severity, assignee_id, due_date, tags, created_at, updated_at
+    ) VALUES (
+      #{projectId}, #{category}, #{title}, #{description}, #{status}, #{severity}, #{assigneeId}, #{dueDate}, #{tags}, NOW(), NOW()
+    )
+  </insert>
+
+  <update id="update">
+    UPDATE issue
+    SET title = #{title},
+        description = #{description},
+        status = #{status},
+        severity = #{severity},
+        assignee_id = #{assigneeId},
+        due_date = #{dueDate},
+        tags = #{tags},
+        updated_at = NOW()
+    WHERE id = #{id}
+  </update>
+
+  <delete id="delete">
+    DELETE FROM issue WHERE id = #{id}
+  </delete>
+</mapper>
