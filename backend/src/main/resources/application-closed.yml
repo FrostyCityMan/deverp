@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:deverp_closed;MODE=MYSQL;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+
+app:
+  storage:
+    base-path: /data/deverp/files
+  mail:
+    host: localhost
+    port: 25
+    mode: log
+  public-url: http://localhost:8080
