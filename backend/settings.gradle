@@ -1,0 +1,2 @@
+rootProject.name = 'erp-parent'
+include 'erp-core', 'erp-api', 'erp-batch'
